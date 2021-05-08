@@ -5,11 +5,11 @@ import datetime
 import sys
 import os
 
-MIN_CAPACITY = 1
+MIN_CAPACITY = 0
 DESIRED_PIN_CODES = [560076, 560062, 560020, 560078, 560001, 560017, 560027, 560064, 560071, 560084, 560011, 560030];
+DISTRICT_ID = 294
 MIN_AGE_LIMIT = 18
-START_DATE=8
-END_DATE=14
+START_DATE=datetime.date.today()
 
 HEADERS = {
   'authority': 'cdn-api.co-vin.in',
@@ -44,12 +44,13 @@ def playSong():
 lastPlayed = datetime.datetime(1970,1,1)
 
 def checkAvailability():
-  for day in range(START_DATE, END_DATE + 1, 1):
+  for day in range(7):
+    curDay = START_DATE + datetime.timedelta(days=day)  
+
     time.sleep(1)
-    dayStr = str(day)
-    if len(dayStr) == 1:
-      dayStr = '0' + dayStr
-    url = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/calendarByDistrict?district_id=294&date={}-05-2021".format(dayStr)
+    dayStr = curDay.strftime("%d-%m-%Y")
+    #print('curDay', dayStr)
+    url = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/calendarByDistrict?district_id={}&date={}".format(DISTRICT_ID,dayStr)
 
     payload={}
     response = requests.request("GET", url, headers=HEADERS, data=payload)
