@@ -2,6 +2,7 @@
 Preqrequisite: Install python3  
 pip3 install -r requirements.txt  
 Change pincodes as desired 
+Modify district id in line number 72 as well
 python3 main.py
 ```
 ----
