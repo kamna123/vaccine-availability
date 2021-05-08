@@ -6,4 +6,4 @@ python3 main.py
 # For testing, 
 keep line 7: MIN_CAPACITY = 0
 otherwise it should be the minimum number of people for which you want to book slots.
-# it will play a song once slots are available
+
